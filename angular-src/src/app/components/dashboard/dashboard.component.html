@@ -1,0 +1,60 @@
+<div class="card mt-4 deep-purple lighten-5">
+<!-- Material form contact -->
+<div class="card-body">
+<form (submit)="onLabSubmit()">
+  <p class="h4 text-center mb-4"> Add New Lab </p>
+  
+  <div class="md-form">
+    <i class="fa fa-laptop prefix grey-text"></i>
+    <input type="text" id="labname" class="form-control" [(ngModel)]="labname" name="labname">
+    <label for="labname">Lab Name</label>
+  </div>
+
+  <div class="md-form">
+      <i class="fa fa-pencil prefix grey-text"></i>
+      <textarea type="text" id="decsription" class="form-control md-textarea" rows="3" [(ngModel)]="description" name="description"></textarea>
+      <label for="description">Lab Description</label>
+  </div>
+
+  <div class="text-center mt-4">
+      <button class="btn btn-outline-secondary" type="submit">Add New<i class="fa fa-paper-plane-o ml-2"></i></button>
+  </div>
+</form>
+</div>
+</div>
+
+<div>
+  <!--Table-->
+<table *ngIf="lablist" class="table mt-5">
+
+    <!--Table head-->
+    <thead class="thead-dark">
+        <tr>
+            <th scope="row">#</th>
+            <th> LAB NAME </th>
+            <th> DESCRIPTION </th>
+             
+            <th> DELETE </th>
+            <th scope="row"></th>
+        </tr>
+    </thead>
+  <!--Table head-->
+
+    <!--Table body-->
+    <tbody >
+        <tr *ngFor="let x of lablist">
+            <th scope="row">#</th>       
+            <td>{{x.labname}}</td>
+            <td>{{x.description}}</td>
+           <td> <button type="button" class="btn btn-outline-warning btn-rounded waves-effect" (click)="onLabDelete(x._id)">Delete </button><td>
+        </tr>
+        
+    </tbody>
+    <!--Table body-->
+
+</table>
+<!--Table-->
+
+<div>
+<!-- Material form contact -->
+                    

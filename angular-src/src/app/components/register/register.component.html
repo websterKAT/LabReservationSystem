@@ -1,0 +1,59 @@
+<div class="card mt-4 deep-purple lighten-5">
+
+  <!-- Card body -->
+  <div class="card-body">
+
+      <!-- Material form register -->
+      <form (submit)="onRegisterSubmit()">
+          <p class="h4 text-center py-4"> RIGISTER NEW USER </p>
+
+          <!-- Material input text -->
+          <div class="md-form">
+              <i class="fa fa-user prefix grey-text"></i>
+              <input type="text" id="firstName" [(ngModel)]="firstName" name="firstName" class="form-control">
+              <label for="first_name" class="font-weight-light">First Name</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="lastName" [(ngModel)]="lastName" name="lastName" class="form-control">
+            <label for="last_name" class="font-weight-light">Last name</label>
+          </div>
+          <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="username" [(ngModel)]="userName" name="userName" class="form-control">
+            <label for="last_name" class="font-weight-light">UserName(Emp-No)</label>
+          </div>
+
+          <!-- Material input email -->
+          <div class="md-form">
+              <i class="fa fa-envelope prefix grey-text"></i>
+              <input type="text" id="email" [(ngModel)]="email" name="email" class="form-control">
+              <label for="email" class="font-weight-light">Email</label>
+          </div>
+
+          <!-- Material input email -->
+          <div class="md-form">
+              <i class="fa fa-exclamation-triangle prefix grey-text"></i>
+              <input type="text" id="confirmEmail" [(ngModel)]="confirmEmail" name="confirmEmail" class="form-control">
+              <label for="confirm-email" class="font-weight-light">Confirm email</label>
+          </div>
+
+          <!-- Material input password -->
+          <!--<div class="md-form">
+              <i class="fa fa-lock prefix grey-text"></i>
+              <input type="password" id="materialFormCardPasswordEx" class="form-control">
+              <label for="materialFormCardPasswordEx" class="font-weight-light">Your password</label>
+          </div> -->
+
+          <div class="text-center py-4 mt-3">
+              <button class="btn btn-primary" type="submit">Register</button>
+          </div>
+      </form>
+      <!-- Material form register -->
+
+  </div>
+  <!-- Card body -->
+
+</div>
+<!-- Card -->

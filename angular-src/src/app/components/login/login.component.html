@@ -1,0 +1,39 @@
+
+<!-- Card -->
+<div class="card mt-4 deep-purple lighten-5">
+
+  <!-- Card body -->
+  <div class="card-body">
+
+      <!-- Material form register -->
+      <form (submit)="onLoginSubmit()">
+          <p class="h4 text-center py-4"> LOGIN </p>
+
+          
+          <!-- Material input email -->
+          <div class="md-form">
+              <i class="fa fa-envelope prefix grey-text"></i>
+              <input type="email" id="email" class="form-control" [(ngModel)]="email" name="email">
+              <label for="email" class="font-weight-light">Your email</label>
+          </div>
+
+          
+          <!-- Material input password -->
+          <div class="md-form">
+              <i class="fa fa-lock prefix grey-text"></i>
+              <input type="password" id="password" class="form-control" [(ngModel)]="password" name="password">
+              <label for="password" class="font-weight-light">Your password</label>
+          </div>
+
+          <div class="text-center py-4 mt-3">
+              <button class="btn btn-primary" type="submit">LOGIN </button>
+          </div>
+      </form>
+      <!-- Material form register -->
+
+  </div>
+  <!-- Card body -->
+
+</div>
+<!-- Card -->
+                    
