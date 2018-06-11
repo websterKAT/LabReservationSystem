@@ -56,8 +56,9 @@ module.exports.deleteReservation = function(id,callback){
 }
 
 module.exports.editReservation = function(id,eReservation,callback) {
+    console.log('this shit is from model');
     const query = {_id:id}
-    eReservation.update(query);
+    eReservation.update(query,callback);
 }
 
 module.exports.getOneReservation = function(id,callback){

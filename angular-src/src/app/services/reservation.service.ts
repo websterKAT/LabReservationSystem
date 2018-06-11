@@ -34,7 +34,8 @@ export class ReservationService {
         .pipe(map(res => res.json()));
     }
 
-    getOneReservation(id){
+    getoneReservation(id){
+      console.log('form one reservation services'+id);
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       return this.http.get('http://localhost:3000/reservations/getreservation/'+id,{headers:headers})
@@ -43,9 +44,10 @@ export class ReservationService {
 
 
     editReservation(id,reservation) {
+      console.log('on edit reservation as fuck');
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post('http://localhost:3000/reservations/editreservation'+id,reservation,{headers:headers})
+      return this.http.post('http://localhost:3000/reservations/editreservation/'+id,reservation,{headers:headers})
         .pipe(map(res => res.json()));
 
     }

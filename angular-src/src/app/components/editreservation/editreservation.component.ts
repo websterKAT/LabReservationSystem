@@ -13,7 +13,7 @@ import { Router,ActivatedRoute,Params } from '@angular/router';
 })
 export class EditreservationComponent implements OnInit {
   reservation:any;
-  reservationId: any;
+  reservationId:string
   id:string;
   username:string;
   useremail:string;
@@ -46,14 +46,17 @@ export class EditreservationComponent implements OnInit {
       return false;
     });
 
-    this.reservationId = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.id = params['id'];
-    console.log(this.id);
+      //console.log(this.id);
     });
-    this.reservationService.getOneReservation(this.reservationId).subscribe(onereservation => {
-      console.log('fuclll')
+    this.reservationService.getoneReservation(this.id).subscribe(onereservation => {
       this.reservation = onereservation.reservation;
-      console.log(this.reservation);
+      console.log(this.reservation);  
+      this.labname = this.reservation.labname;
+      this.reserveddate = this.reservation.reserveddate;
+      this.from = this.reservation.from;
+      this.to = this.reservation.to;
     },
     err => {
       console.log(err);
@@ -63,13 +66,62 @@ export class EditreservationComponent implements OnInit {
     
 
   }
+
+  processdates = function convert(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth()+1)).slice(-2),
+        day  = ("0" + date.getDate()).slice(-2);
+    return [ date.getFullYear(), mnth, day ].join("-");
+}
+
+  onEditLabReservation(resId){
+    const user = this.authService.loadUser();
+    const rdate = this.reserveddate.toString();
+    const realdate = this.processdates(rdate);
+    console.log(realdate);
+    const editedreservation = {
+      username:user.username,
+      useremail:user.email,
+      labname:this.labname,
+      reserveddate:realdate,
+      from:this.from,
+      to:this.to
+
+  } 
+  console.log(editedreservation);
+  console.log('on edit reservation');
+  this.reservationService.editReservation(this.id,editedreservation).subscribe(data => {
+    console.log('u are done');
+    if(data.success) {
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ["Reservation has been successfully Edited"], 
+        dismissible: true, 
+        timeout: 5000,
+        type: 'success'
+     }); 
+     this.router.navigate(['/profile']); 
+      
+    
+
+    } else {
+      this.ngFlashMessageService.showFlashMessage({
+        messages: ["Something went wrong"], 
+       dismissible: true, 
+       timeout: 5000,
+       type: 'danger'
+     });  
+     this.router.navigate(['/dashboard']); 
+    }
+  });
+
+
   
 }
 
   
 
 
-
+}
    
   
 

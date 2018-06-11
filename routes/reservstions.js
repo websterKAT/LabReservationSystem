@@ -60,7 +60,8 @@ router.delete('/:id',(req,res,next) => {
 
 
 router.post('/editreservation/:id',(req,res,next) => {
-    const id = request.params.id;   
+    const id = req.params.id;  
+    
     let newReservation = new Reservation ({
         username:req.body.username,
         useremail:req.body.useremail,
@@ -69,18 +70,30 @@ router.post('/editreservation/:id',(req,res,next) => {
         from:req.body.from,
         to:req.body.to
     }); 
+
+    Reservation.deleteReservation(id,(err,lab) => {
+        if(err){
+            console.log('error');
+        } else {
+            console.log('success');
+        }
+    });
+
+
     
-    Reservation.editReservation(id,newReservation ,(err,user) => {
-            if(err) {
-                res.json({success:false,msg:'Failed to make reservation'});
+    Reservation.addReservation(newReservation ,(err,user) => {
+        console.log(newReservation);
+            if(err) {   
+                res.json({success:false,msg:'Failed to edit reservation'});
             } else {
-                res.json({success:true,msg:'Reservation make successfully'});
+                res.json({success:true,msg:'Reservation edited successfully'});
             }
         });
    });
 
    router.get('/getreservation/:id',(req,res,next) => {
        const id = req.params.id;
+       //console.log(id);
        Reservation.getOneReservation(id,(err,reservation) => {
         if(err) {
             res.json({success:false,msg:'Failed to load that specific lab'});
