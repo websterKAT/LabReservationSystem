@@ -104,6 +104,21 @@ router.post('/editreservation/:id',(req,res,next) => {
        
    });
 
+   router.post('/searchreservation',(req,res,next) => {
+        const labname = req.body.labname;
+        const date = req.body.date;
+        Reservation.getReservationByDate(date,labname,(err,reservationlist) => {
+        if(err){
+            res.json({success:false,msg:'Failed to retrive reservations'});
+        } else {
+            res.json({success:true,reservationlist:reservationlist});
+        }
+    });
+        
+   });
+
+   
+
 
 
 
