@@ -104,18 +104,48 @@ router.post('/editreservation/:id',(req,res,next) => {
        
    });
 
-   router.post('/searchreservation',(req,res,next) => {
-        const labname = req.body.labname;
-        const date = req.body.date;
-        Reservation.getReservationByDate(date,labname,(err,reservationlist) => {
-        if(err){
-            res.json({success:false,msg:'Failed to retrive reservations'});
-        } else {
-            res.json({success:true,reservationlist:reservationlist});
-        }
+   router.get('/getreservationbydate/:labname',(req,res,next) => {
+    const labname = req.params.labname;
+    const displayDate = new Date().toLocaleDateString();
+    const rdate = processdates(displayDate);
+    Reservation.getReservationByDate(rdate,labname,(err,reservation) => {
+     if(err) {
+         res.json({success:false,msg:'Failed to load that specific lab'});
+     } else  {
+         //console.log(rdate);
+         res.json({success:true,reservation:reservation});
+     }
     });
+    
+});
+
+router.post('/searchreservation',(req,res,next) => {
+    const labname = req.body.labname;
+    const reserveddate = req.body.reserveddate;
+    Reservation.getReservationByDate(reserveddate,labname,(err,reservation) => {
+     if(err) {
+         res.json({success:false,msg:'Failed to load that specific lab reservation'});
+     } else  {
+         res.json({success:true,reservation:reservation});
+     }
+    });
+    
+});
+
+
+
+processdates = function convert(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth()+1)).slice(-2),
+        day  = ("0" + date.getDate()).slice(-2);
+    return [ date.getFullYear(), mnth, day ].join("-");
+}
+
+
+
+
         
-   });
+  
 
    
 

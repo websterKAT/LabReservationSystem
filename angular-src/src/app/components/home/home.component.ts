@@ -33,4 +33,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  showSearch(labname){
+    this.router.navigate(['search/'+labname]);
+  }
+
 }

@@ -1,5 +1,3 @@
-import { S_IRGRP } from 'constants';
-
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
@@ -73,17 +71,12 @@ module.exports.getReservationByDate = function(rdate,labname,callback){
     Reservation.find(query,callback);
 }
 
-module.exports.checkReservation = function(labname,date,from,to,callback){
-    const query1 = {reserveddate:date,labname:labname}
-    Reservation.find(query1,(err,reservation)=> {
-        if(err){
-            
-        }
-    })
-        
-}
+// module.exports.checkReservation = function(labname,date,callback){
+//     const query1 = {reserveddate:date,labname:labname}
+//     Reservation.find(query1,callback);
+// }    
 
-
+    
 
 
 

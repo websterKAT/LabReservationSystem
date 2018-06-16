@@ -36,7 +36,7 @@
       <h5 class="card-title"> {{x.description}}</h5>
      <div class="row">      
             <button [routerLink] = "['/addreservation']" type="button" class="btn btn-outline-default waves-effect">Reserve Lab </button>
-            <button [routerLink] = "['/search']" type="button" class="btn btn-outline-default waves-effect">View More </button>
+            <button (click)="showSearch(x.labname)" type="button" class="btn btn-outline-default waves-effect">View More </button>
     </div>
   </div>
 </div>

@@ -24,6 +24,7 @@ import { SearchComponent } from './components/search/search.component';
 
 
 
+
 const appRoutes:Routes = [ 
   {path:'',component:HomeComponent},
   {path:'register',component:RegisterComponent},
@@ -32,7 +33,7 @@ const appRoutes:Routes = [
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'addreservation',component:ReservationComponent,canActivate:[AuthGuard]},
   {path:'editreservation/:id',component:EditreservationComponent,canActivate:[AuthGuard]},
-  {path:'search',component:SearchComponent,canActivate:[AuthGuard]}
+  {path:'search/:labname',component:SearchComponent,canActivate:[AuthGuard]}
   
 ]
 
