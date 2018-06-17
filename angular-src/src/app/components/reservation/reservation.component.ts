@@ -19,6 +19,7 @@ export class ReservationComponent implements OnInit {
   from:String;
   to:String;
   lablist = [];
+  reservationlist = [];
 
   constructor (
     private ngFlashMessageService: NgFlashMessageService,
@@ -52,9 +53,66 @@ export class ReservationComponent implements OnInit {
     return [ date.getFullYear(), mnth, day ].join("-");
 }
 
+
+checkReservationConflict(){
+  const seachdate = this.processdates(this.reserveddate);
+  
+  const searchobj = {
+      labname:this.labname,
+      reserveddate:seachdate
+  }
+  let conflict = false;
+  let cfrom = "";
+  let cto = "";
+  this.reservationService.searchReservationByDate(searchobj).subscribe(dashboard => {
+      this.reservationlist = dashboard.reservation;
+      if(this.reservationlist.length >= 1){
+        for(let obj of this.reservationlist){
+         if(this.to > obj["form"] && this.to <= obj["to"]){
+           cto = obj["to"];
+           cfrom = obj["from"];
+           conflict = true;
+         } else if(this.from > obj["from"] && this.from < obj["to"]){
+          cto = obj["to"];
+          cfrom = obj["from"];
+           conflict = true;
+         } else if(this.from >= obj["from"] && this.to <= obj["to"]){
+          cto = obj["to"];
+           cfrom = obj["from"];
+           conflict = true;
+         } else if(this.from <= obj["from"] && this.to >= obj["to"]) {
+           cto = obj["to"];
+           cfrom = obj["from"];
+            conflict = true;
+         } else {
+           conflict = false;
+         }
+        }
+        if(conflict){
+          this.ngFlashMessageService.showFlashMessage({
+            messages: ["there is a reservation on this day from "+cfrom+" to "+cto], 
+             dismissible: true, 
+             timeout: 10000,
+             type: 'danger'
+           });
+        } else {
+          this.onReserveLab();
+        }
+        
+      } else {
+        this.onReserveLab();
+      }
+      },
+      err => {
+        console.log(err);
+        return false;
+      });
+  }
+
   
   
   onReserveLab() {
+    
     const user = this.authService.loadUser();
     const rdate = this.reserveddate.toString();
     const realdate = this.processdates(rdate);
@@ -80,6 +138,8 @@ export class ReservationComponent implements OnInit {
        });
        return false;
     }
+
+
     
     this.reservationService.insertReservation(reservation).subscribe(data => {
       if(data.success) {

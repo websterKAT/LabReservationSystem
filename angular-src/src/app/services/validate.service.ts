@@ -32,7 +32,12 @@ export class ValidateService {
     if(reservation.labname == undefined || reservation.reserveddate == undefined || reservation.from == undefined || reservation.to == undefined ){
       return false;
     } else {
-      return true;
+      if(reservation.from < reservation.to){ //to time should always larger than from time;
+        return true
+      }else {
+        return false;
+      }
+      
     }
   }
 }

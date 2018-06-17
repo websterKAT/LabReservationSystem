@@ -6,6 +6,14 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
+            <li *ngIf="!authService.loggedIn()" class="nav-item dropdown" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >
+                    <a [routerLink] = "['/dashboard']" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" [routerLink] = "['/addreservation']">Add reservation</a>
+                            <a class="dropdown-item" href="">Add New Lab</a>
+                            <a class="dropdown-item" href="">User Accounts</a>
+                    </div>
+                </li>
           <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
               <a [routerLink] = "['/']" class="nav-link" >Home</a>
           </li>
@@ -15,19 +23,12 @@
           <li *ngIf="authService.loggedIn()"  class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
               <a [routerLink] = "['/register']" class="nav-link">Register</a>
           </li>
-          <li *ngIf="!authService.loggedIn()" class="nav-item dropdown" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >
-            <a [routerLink] = "['/dashboard']" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard</a>
-            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" [routerLink] = "['/addreservation']">Add reservation</a>
-                    <a class="dropdown-item" href="">Add New Lab</a>
-                    <a class="dropdown-item" href="">User Accounts</a>
-            </div>
-        </li>
+          
         <li *ngIf="!authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
             <a [routerLink] = "['/profile']" class="nav-link">Profile</a>
         </li>
         <li class="nav-item" *ngIf="!authService.loggedIn()">
-            <a (click)="onLogoutClick()" class="nav-link" href="#" >LOGOUT</a>
+            <a (click)="onLogoutClick()" class="nav-link" href="#" >Logout</a>
         </li>
       </ul>
       <span class="navbar-text white-text">
