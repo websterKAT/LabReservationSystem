@@ -41,6 +41,21 @@ export class AuthService {
 
   }
 
+  getAllUsers() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/allusers',{headers:headers})
+      .pipe(map(res => res.json()));
+  }
+
+  deleteUser(id) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete('http://localhost:3000/users/deleteuser/'+id,{headers:headers})
+      .pipe(map(res => res.json()));
+  }
+
+
 
   storeUserData(token,user){
     localStorage.setItem('id_token',token);
@@ -60,6 +75,7 @@ export class AuthService {
     const token = localStorage.getItem('id_token');
     this.authToken = token;
   }
+  
   loadUser(){
     return JSON.parse(localStorage.getItem('user'));
     
@@ -75,4 +91,21 @@ export class AuthService {
       return helper.isTokenExpired(localStorage.id_token); 
     }
   }
+
+  isAdminLogged(){
+    const user = this.loadUser();
+    if(user==null){
+      return false
+    } else { 
+      const email = user.email;
+      if(email=="admin@ucsc.com"){
+        return true;
+      } else {
+        return false;
+    }
+    }
+    
+  }
+
+
 }

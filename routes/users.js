@@ -69,6 +69,27 @@ router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res,
     res.json({user: req.user});
   });
 
+router.get('/allusers',(req,res,next) => {
+    User.getAllUsers((err,userlist) => {
+        if(err){
+            res.json({success:false,msg:'Failed to load all users'});
+        } else {    
+            res.json({success:true,userlist:userlist});
+        }
+    });
+})
+
+router.delete('/deleteuser/:id',(req,res,next) => {    
+    const id = req.params.id;
+    User.deleteUser(id,(err,lab) => {
+        if(err){
+            res.json({success:false,msg:'Something went worng'})
+        } else {
+            res.json({success:true,msg:'User has been deleted successfully'});
+        }
+    });
+});
+
 
 
 module.exports = router;

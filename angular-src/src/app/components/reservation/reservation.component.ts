@@ -131,7 +131,7 @@ checkReservationConflict(){
       //console.log(lab.labname);
       //console.log(lab.description);
       this.ngFlashMessageService.showFlashMessage({
-        messages: ["Please fill Requied Fields"], 
+        messages: ["Something went Wrong"], 
          dismissible: true, 
          timeout: 5000,
          type: 'danger'
@@ -144,13 +144,13 @@ checkReservationConflict(){
     this.reservationService.insertReservation(reservation).subscribe(data => {
       if(data.success) {
         this.ngFlashMessageService.showFlashMessage({
-          messages: ["Reservation has been successfully"], 
+          messages: ["Reservation has been done successfully"], 
           dismissible: true, 
           timeout: 5000,
           type: 'success'
        }); 
         this.ngOnInit();
-        this.router.navigate(['/addreservation']); 
+        this.router.navigate(['/profile']); 
         
       
 

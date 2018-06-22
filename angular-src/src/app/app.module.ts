@@ -20,6 +20,7 @@ import {NgFlashMessagesModule} from 'ng-flash-messages';
 import {ReservationComponent} from './components/reservation/reservation.component';
 import { EditreservationComponent } from './components/editreservation/editreservation.component';
 import { SearchComponent } from './components/search/search.component';
+import { ResetuserComponent } from './components/resetuser/resetuser.component';
 
 
 
@@ -33,7 +34,8 @@ const appRoutes:Routes = [
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'addreservation',component:ReservationComponent,canActivate:[AuthGuard]},
   {path:'editreservation/:id',component:EditreservationComponent,canActivate:[AuthGuard]},
-  {path:'search/:labname',component:SearchComponent,canActivate:[AuthGuard]}
+  {path:'search/:labname',component:SearchComponent,canActivate:[AuthGuard]},
+  {path:'resetusers',component:ResetuserComponent,canActivate:[AuthGuard]},
   
 ]
 
@@ -49,6 +51,7 @@ const appRoutes:Routes = [
     ReservationComponent,
     EditreservationComponent,
     SearchComponent,
+    ResetuserComponent,
     
   ],
   imports: [
