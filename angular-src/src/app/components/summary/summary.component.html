@@ -1,0 +1,54 @@
+<div class="jumbotron jumbotron-fluid mt-3">
+    <h3 class="h1-reponsive mb-4 mt-2 blue-text font-bold ml-5">Search By Date:</h3>
+    <form (submit)="onSearchReservation()" class="form-inline md-form form-sm active-purple-2 ml-5">
+        <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="reserveddate" name="reserveddate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker> </mat-datepicker>
+        </mat-form-field>
+        <mat-form-field id="labname">
+            <mat-select placeholder="Select the lab" [(ngModel)]="labname" name="labname">
+              <mat-option *ngFor="let x of lablist" value="{{x.labname}}"> {{x.labname}} </mat-option>
+              <mat-option value="ALL" selected>ALL</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+          <button type="submit" class="btn btn-outline-secondary waves-effect" id="searchbutton" >Search</button>
+    </form>
+</div>
+
+
+<table class="table mt-5">
+
+  <!--Table head-->
+  <thead class="thead-dark">
+      <tr>
+          <th> LAB NAME </th>
+          <th> DATE </th>
+          <th> FROM </th>
+          <th> TO </th>
+          <th> RESERVED BY</th>
+          <th> RESERVED DATE </th>
+          
+      </tr>
+  </thead>
+<!--Table head-->
+
+  <!--Table body-->
+  <tbody >
+      <tr *ngFor="let x of reservationlist">
+                
+          <td> <b>{{x.labname}}</b> </td>
+          <td> <b>{{x.reserveddate}}</b> </td>
+          <td> <b>{{x.from}}</b> </td>
+          <td> <b>{{x.to}}</b> </td>
+          <td> <b>{{x.useremail}}</b> </td>
+          <td> <b>{{x.addeddate}}</b> </td> 
+         
+      </tr>
+      
+  </tbody>
+  <!--Table body-->
+
+</table>

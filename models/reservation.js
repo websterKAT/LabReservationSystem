@@ -71,6 +71,18 @@ module.exports.getReservationByDate = function(rdate,labname,callback){
     Reservation.find(query,callback);
 }
 
+module.exports.getAllReservations = function(callback){
+    Reservation.find({},callback);
+}
+
+module.exports.getAllReservationsAdmin = function(rdate,callback){
+    const query = {reserveddate:rdate};
+    Reservation.find(query,callback);
+}
+
+
+
+
 // module.exports.checkReservation = function(labname,date,callback){
 //     const query1 = {reserveddate:date,labname:labname}
 //     Reservation.find(query1,callback);

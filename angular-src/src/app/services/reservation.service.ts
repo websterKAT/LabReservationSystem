@@ -69,6 +69,27 @@ export class ReservationService {
         .pipe(map(res => res.json()));
     }
 
+    getAllReservations() {
+      
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.get('http://localhost:3000/reservations/allreservations',{headers:headers})
+        .pipe(map(res => res.json()));
+    }
+
+    searchReservationsAdmin(searchobject) {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.post('http://localhost:3000/reservations/adminsearchreservation',searchobject,{headers:headers})
+        .pipe(map(res => res.json()));
+
+    }
+
+    
+
+
+
+
 
   }
 

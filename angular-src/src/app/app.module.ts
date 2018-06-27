@@ -21,6 +21,8 @@ import {ReservationComponent} from './components/reservation/reservation.compone
 import { EditreservationComponent } from './components/editreservation/editreservation.component';
 import { SearchComponent } from './components/search/search.component';
 import { ResetuserComponent } from './components/resetuser/resetuser.component';
+import { SummaryComponent } from './components/summary/summary.component';
+
 
 
 
@@ -36,6 +38,7 @@ const appRoutes:Routes = [
   {path:'editreservation/:id',component:EditreservationComponent,canActivate:[AuthGuard]},
   {path:'search/:labname',component:SearchComponent,canActivate:[AuthGuard]},
   {path:'resetusers',component:ResetuserComponent,canActivate:[AuthGuard]},
+  {path:'summary',component:SummaryComponent,canActivate:[AuthGuard]}
   
 ]
 
@@ -52,6 +55,7 @@ const appRoutes:Routes = [
     EditreservationComponent,
     SearchComponent,
     ResetuserComponent,
+    SummaryComponent,
     
   ],
   imports: [
@@ -64,7 +68,8 @@ const appRoutes:Routes = [
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+
    
     
     

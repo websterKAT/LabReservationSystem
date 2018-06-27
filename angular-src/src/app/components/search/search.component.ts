@@ -67,12 +67,22 @@ export class SearchComponent implements OnInit {
         this.reservationService.searchReservationByDate(searchobj).subscribe(dashboard => {
             this.reservationlist = dashboard.reservation;
             if(dashboard.success) {
+              if(this.reservationlist.length > 0) {
+                this.ngFlashMessageService.showFlashMessage({
+                  messages: ["Found Records"], 
+                  dismissible: true, 
+                  timeout: 5000,
+                  type: 'success'
+               });
+            } else {
               this.ngFlashMessageService.showFlashMessage({
-                messages: ["Found a record "], 
+                messages: ["No Records "], 
                 dismissible: true, 
                 timeout: 5000,
-                type: 'success'
+                type: 'warning  '
              });
+            }
+             
             } else {
                 this.ngFlashMessageService.showFlashMessage({
                   messages: ["No Records Found"], 

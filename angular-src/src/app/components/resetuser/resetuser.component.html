@@ -16,10 +16,10 @@
   <!--Table body-->
   <tbody >
       <tr *ngFor="let x of userlist">
-          <td> {{x.username}} </td>
-          <td> {{x.email}} </td>
-         <td> <button type="button" class="btn btn-outline-warning btn-rounded waves-effect" (click)="onUserReset(x._id)"> RESET PASSWORD</button></td>
-         <td> <button type="button" class="btn btn-outline-danger btn-rounded waves-effect" (click)="onUserDelete(x._id)"> DELETE </button></td>
+        <td> {{x.username}} </td>
+        <td> {{x.email}} </td>
+        <td> <button type="button" class="btn btn-outline-warning btn-rounded waves-effect" (click)="onUserReset(x._id)"> RESET PASSWORD</button> </td>
+        <td> <button type="button" class="btn btn-outline-danger btn-rounded waves-effect" (click)="onUserDelete(x._id)"> DELETE </button> </td>
       </tr>
       
   </tbody>

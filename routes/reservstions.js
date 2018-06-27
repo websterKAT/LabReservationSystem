@@ -1,5 +1,3 @@
-
-
 const express = require('express');
 const router = express.Router();
 const config = require('../config/database')
@@ -24,15 +22,15 @@ router.post('/newreservation',(req,res,next) => {
         });
    });
 
-router.get('/allreservations',(req,res,next) => {
-    Reservation.getAllReservations((err,reslist) => {
-        if(err){
-            res.json({success:false,msg:'Failed to make get request'});
-        } else {
-            res.json({success:true,reslist:reslist});
-        }
-    });
-})
+// router.get('/allreservations',(req,res,next) => {
+//     Reservation.getAllReservations((err,reslist) => {
+//         if(err){
+//             res.json({success:false,msg:'Failed to make get request'});
+//         } else {
+//             res.json({success:true,reslist:reslist});
+//         }
+//     });
+// })
 
 router.get('/myreservations/:username',(req,res,next) => {
     const username = req.params.username;
@@ -119,6 +117,8 @@ router.post('/editreservation/:id',(req,res,next) => {
     
 });
 
+
+
 router.post('/searchreservation',(req,res,next) => {
     const labname = req.body.labname;
     const reserveddate = req.body.reserveddate;
@@ -131,6 +131,43 @@ router.post('/searchreservation',(req,res,next) => {
     });
     
 });
+
+router.post('/adminsearchreservation',(req,res,next) => {
+    const labname = req.body.labname;
+    const reserveddate = req.body.reserveddate;
+    //console.log(labname);
+    //console.log(reserveddate);
+    if(labname == "ALL"){
+        Reservation.getAllReservationsAdmin(reserveddate,(err,reservation) => {
+            if(err) {
+                res.json({success:false,msg:'failed to load all reservations'});
+            } else {
+                    res.json({success:true,reservation:reservation});
+            }
+            });
+
+    } else {
+        Reservation.getReservationByDate(reserveddate,labname,(err,reservation) => {
+            if(err) {
+                res.json({success:false,msg:'failed to load all reservations'});
+            } else {
+                    res.json({success:true,reservation:reservation});
+            }
+            });
+    }
+    
+});
+
+
+router.get('/allreservations',(req,res,next) => {   
+    Reservation.getAllReservations((err,reservationlist) => {
+        if(err){
+            res.json({success:false,msg:'failed to load all reservations'});
+        } else {
+            res.json({success:true,reservationlist:reservationlist});
+        }
+    });
+})
 
 
 
