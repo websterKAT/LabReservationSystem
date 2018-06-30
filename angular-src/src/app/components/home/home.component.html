@@ -26,23 +26,61 @@
 
 </div>
 <!--Jumbotron-->
-
-
-
+<!-- <div class="col-md-12 mt-5" id="lines">
+<mat-card>  <b> LABS AVAILABLE </b> </mat-card>   
+</div> -->
 <div *ngIf="lablist" class="row mt-3">
-<div class="card col-md-4 mt-2" *ngFor="let x of lablist">
-  <h4 class="card-header mdb-color lighten-1 white-text">{{x.labname}} </h4>
-  <div class="card-body">
+
+
+<div class="col-md-4 mt-4" *ngFor="let x of lablist">
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title> <p class="head">{{x.labname }} </p></mat-card-title>
+        <mat-card-subtitle>ucsc</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{ x.imgurl }}" alt="Photo of a LABS" >
+      <mat-card-content>
+        <p>
+          {{x.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+          <button [routerLink] = "['/addreservation']" type="button" class="btn btn-outline-secondary waves-effect col-md-12">Reserve Lab </button>
+          <button (click)="showSearch(x.labname)" type="button" class="btn btn-outline-default waves-effect col-md-12">INFO </button>
+      </mat-card-actions>
+    <!-- <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{x.labname}}</mat-card-title>
+        <mat-card-subtitle>ucsc</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <p>
+         {{x.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+          <button mat-button [routerLink] = "['/addreservation']" >ADD</button>
+          <button mat-button (click)="showSearch(x.labname)">INFO</button>
+        </mat-card-actions> -->
+  <!-- <h4 class="card-header cyan darken-4 white-text">{{x.labname}} </h4> -->
+
+  <!-- <div class="card-body">
       <h5 class="card-title"> {{x.description}}</h5>
      <div class="row">      
-            <button [routerLink] = "['/addreservation']" type="button" class="btn btn-outline-default waves-effect">Reserve Lab </button>
-            <button (click)="showSearch(x.labname)" type="button" class="btn btn-outline-default waves-effect">View More </button>
+            <button [routerLink] = "['/addreservation']" type="button" class="btn btn-outline-secondary waves-effect col-md-12">Reserve Lab </button>
+            <button (click)="showSearch(x.labname)" type="button" class="btn btn-outline-default waves-effect col-md-12">INFO </button>
     </div>
-  </div>
+  </div> -->
+</mat-card>
 </div>
+
 
 </div>
 
+<!-- <mat-card>
+    
+  </mat-card> -->
 
 
 

@@ -2,11 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { NgFlashMessageService } from 'ng-flash-messages';
 import { ValidateService } from '../../services/validate.service'; 
 import { ReservationService } from '../../services/reservation.service';
-import {LabService} from '../../services/lab.service';
+import { LabService } from '../../services/lab.service';
 import { Router } from '@angular/router'; 
 
+import * as jspdf from 'jspdf';
+//require('jspdf-autotable');
+// import * as jsPDF from 'jspdf';
+import 'jspdf-autotable';
+
+
 @Component({
-  selector: 'app-summary',
+  selector: 'app-summary',  
   templateUrl: './summary.component.html',
   styleUrls: ['./summary.component.css']
 })
@@ -29,7 +35,7 @@ export class SummaryComponent implements OnInit {
   ngOnInit() {
     this.labService.getAllLabs().subscribe(dashboard => {
       this.lablist = dashboard.lablist;
-      
+    
     },
     err => {
       console.log(err);
@@ -42,13 +48,14 @@ export class SummaryComponent implements OnInit {
       this.reservationlist = reservations.reservationlist;
       this.getTimeStamp(this.reservationlist);
       this.reservationlist.reverse();
+      console.log(this.reservationlist[1]);
     },
     err => {
       console.log(err);
       return false;
     });
    
-    
+   
     
   //   for(let result of this.reservationlist){
   //     console.log('fuck off')
@@ -75,7 +82,7 @@ export class SummaryComponent implements OnInit {
 
 
   onSearchReservation(){
-    console.log('hiii');
+    //console.log('hiii');
     const seachdate = this.processdates(this.reserveddate);
     
     const searchobj = {
@@ -89,8 +96,9 @@ export class SummaryComponent implements OnInit {
         this.getTimeStamp(this.reservationlist);
         this.reservationlist.reverse();
         
+        
         if(dashboard.success) {
-          if(this.reservationlist.length > 0){
+          if(this.reservationlist.length > 0) {
             this.ngFlashMessageService.showFlashMessage({
               messages: ["Found a record "], 
               dismissible: true, 
@@ -119,6 +127,40 @@ export class SummaryComponent implements OnInit {
           console.log(err);
           return false;
         });
+    }
+
+
+    downloadPDF() {
+      var rows = [
+        
+      ];
+      //console.log(onerow)
+      var i = 0;
+      for(let obj of this.reservationlist) {
+        var insideRow = [ ];
+        insideRow.push(this.reservationlist[i].labname);
+        insideRow.push(this.reservationlist[i].reserveddate);
+        insideRow.push(this.reservationlist[i].from);
+        insideRow.push(this.reservationlist[i].to);
+        insideRow.push(this.reservationlist[i].useremail);
+       
+        i = i + 1;
+        rows.push(insideRow);
+      }
+
+      const displayDate = new Date().toLocaleDateString();
+      const rdate = this.processdates(displayDate);
+      
+      var columns = ["Labname","Date","From","To","Reserved By"];
+      
+
+      var doc = new jspdf();
+      doc.text('SUMMARY', 10, 10);
+     // doc.text('***************************************************', 10, 10  );
+      doc.autoTable(columns,rows);
+      doc.text('date '+rdate,2,2);  
+      doc.save('table.pdf');
+    
     }
 
 }

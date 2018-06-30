@@ -3,7 +3,7 @@ import { NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatInputModule,MatDatepickerModule,MatNativeDateModule,MatSelectModule } from '@angular/material';
+import {MatInputModule,MatDatepickerModule,MatNativeDateModule,MatSelectModule,MatCardModule } from '@angular/material';
 
 import {RouterModule,Routes} from '@angular/router';
 import {AuthGuard} from './guard/auth.guard'
@@ -22,6 +22,8 @@ import { EditreservationComponent } from './components/editreservation/editreser
 import { SearchComponent } from './components/search/search.component';
 import { ResetuserComponent } from './components/resetuser/resetuser.component';
 import { SummaryComponent } from './components/summary/summary.component';
+
+
 
 
 
@@ -69,6 +71,7 @@ const appRoutes:Routes = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatCardModule
 
    
     

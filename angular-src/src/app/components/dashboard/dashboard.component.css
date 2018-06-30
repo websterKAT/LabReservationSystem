@@ -1,0 +1,9 @@
+p {
+    color: #757575;
+    background:#e3f2fd;
+    font-size:1.875em;  
+    font-weight: bold;  
+}
+mat-card {
+    margin-top: 20px;
+}
