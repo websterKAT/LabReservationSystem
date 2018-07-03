@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
         } else {
           this.ngFlashMessageService.showFlashMessage({
-            messages: ["something went wrong"], 
+            messages: ["Incorrect Username or Password"], 
             dismissible: true, 
             timeout: 5000,
             type: 'danger'

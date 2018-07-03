@@ -6,18 +6,18 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule,MatDatepickerModule,MatNativeDateModule,MatSelectModule,MatCardModule } from '@angular/material';
 
 import {RouterModule,Routes} from '@angular/router';
-import {AuthGuard} from './guard/auth.guard'
-import {AppComponent} from './app.component';
-import {NavbarComponent} from './components/navbar/navbar.component';
-import {LoginComponent} from './components/login/login.component';
-import {RegisterComponent} from './components/register/register.component';
-import {HomeComponent} from './components/home/home.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {ProfileComponent} from './components/profile/profile.component';
-import {ValidateService} from './services/validate.service';
-import {AuthService} from './services/auth.service';
-import {NgFlashMessagesModule} from 'ng-flash-messages';
-import {ReservationComponent} from './components/reservation/reservation.component';
+import { AuthGuard} from './guard/auth.guard'
+import { AppComponent} from './app.component';
+import { NavbarComponent} from './components/navbar/navbar.component';
+import { LoginComponent} from './components/login/login.component';
+import { RegisterComponent} from './components/register/register.component';
+import { HomeComponent} from './components/home/home.component';
+import { DashboardComponent} from './components/dashboard/dashboard.component';
+import { ProfileComponent} from './components/profile/profile.component';
+import { ValidateService} from './services/validate.service';
+import { AuthService} from './services/auth.service';
+import { NgFlashMessagesModule} from 'ng-flash-messages';
+import { ReservationComponent} from './components/reservation/reservation.component';
 import { EditreservationComponent } from './components/editreservation/editreservation.component';
 import { SearchComponent } from './components/search/search.component';
 import { ResetuserComponent } from './components/resetuser/resetuser.component';

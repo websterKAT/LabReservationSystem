@@ -1,8 +1,13 @@
-.container {
+/* .container {
     display: flex;
     flex-direction: column;
   }
   
   .container > * {
     width: 100%;
+  } */
+
+  mat-card {
+    margin-top: 20px;
+    
   }

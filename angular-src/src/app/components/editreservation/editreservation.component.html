@@ -1,33 +1,32 @@
 
 <!-- Material form login -->
-<div class="card mt-4 ">
-  <div class="container">
-    <form (submit)="onEditLabReservation()">
+<mat-card>    
+  <form (submit)="onEditLabReservation()">
       <hr>
-    <h4 class="indigo lighten-5">EDIT LAB RESERVATION </h4>
+    <h4 class="mdb-color lighten-1 white-text">EDIT LAB RESERVATION </h4>
     <hr> 
   
-      <mat-form-field>
+      <mat-form-field class="col-md-12">
           <mat-select placeholder="Please select the lab you want to reserve" [(ngModel)]="labname" name="labname">
             <mat-option *ngFor="let x of lablist" value="{{x.labname}}"> {{x.labname}} </mat-option>
           </mat-select>
       </mat-form-field>
       <hr>
-        <h6 class="grey lighten-1">SELECT THE DATE:</h6>
+        <h6 class="mdb-color lighten-1 white-text">SELECT THE DATE:</h6>
      <hr> 
-     <mat-form-field>
+     <mat-form-field class="col-md-12">
       <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="reserveddate" name="reserveddate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker> </mat-datepicker>
     </mat-form-field>
       <hr>
-       <h6 class="grey lighten-1">SELECT THE TIME SLOT:</h6>
+       <h6 class="mdb-color lighten-1 white-text">SELECT THE TIME SLOT:</h6>
       <hr> 
-      <mat-form-field>
+      <mat-form-field class="col-md-12">
         <input type="time" matInput placeholder="From" [(ngModel)]="from" name="form">
       </mat-form-field>
       <br/>
-      <mat-form-field>
+      <mat-form-field class="col-md-12" >
         <input type="time" matInput placeholder="To" [(ngModel)]="to" name="to">
       </mat-form-field>
       <div class="text-center mt-4">
@@ -36,10 +35,8 @@
     
      
       </form>
-      
-  </div>
-  </div>
-  
+    </mat-card>
+
   
   
          
